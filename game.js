@@ -1,12 +1,14 @@
-function getComputerChoice() {
+
+    
+    
+    function getComputerChoice() {
     let computerChoice = ['Rock', 'Paper', 'Scissors'];
     let index = Math.floor(Math.random() * 3);
     return computerChoice[index];
 }
 
 function playerSelection() {
-    let playerChoice = prompt("Please Type 'Rock', 'Paper', or 'Scissors'")
-    return playerChoice[0].toUpperCase() + playerChoice.slice(1).toLowerCase();
+    
 }
 
 function getWinner(p1, p2) {
@@ -17,8 +19,15 @@ function getWinner(p1, p2) {
 }
 
 function playRound(playerChoice, computerChoice) {
-    console.log("Player Played: " + playerChoice)
-    console.log("Computer Played: " + computerChoice)
+
+    
+    
+    const playerMove = document.createElement('span');
+    playerMove.classList.toggle('move');    
+    
+    const computerMove = document.createElement('span');
+
+
     if (playerChoice == computerChoice) {
         console.log("It's a tie! Re-play Round!")
         return 0;
@@ -27,21 +36,82 @@ function playRound(playerChoice, computerChoice) {
     return getWinner(playerChoice, computerChoice);   
 }
 
-function game() {
-   let playerScore = 0;
-   let computerScore = 0;
+function displayChoice(player, computer) {
+    const playerChoiceContainer = document.querySelector('.container')
+    const playerChoice = document.createElement('p');
+    playerChoice.textContent();
+    playerChoiceContainer.appendChild();
 
-   while (playerScore != 3 && computerScore != 3) {
-    let result = playRound(playerSelection(), getComputerChoice());
+
+}
+
+function game() {
+
+
+
+    let playerMove = playerSelection();
+    let computerMove = getComputerChoice();
+    displayChoice("Rock", "Rock")
+    let result = playRound(playerMove, computerMove);
     if (result == 0) {
-        continue;
+
    } else if (result == 1) {
     playerScore++;
-    continue;
-   }
+    
+   } else {
    computerScore++;
-
    }
-    playerScore == 3 ? console.log("Player Wins the Match!") : console.log("Computer Wins the Match!")   
-}
-game();
+}  
+
+const buttons = document.querySelectorAll('button');
+
+const playerChoiceContainer = document.querySelector('.container .choices .playerMove');
+const computerChoiceContainer = document.querySelector('.container .choices .computerMove');   
+
+const playerResultContainer = document.querySelector('.container .results .player-result');
+const computerResultContainer = document.querySelector('.container .results .computer-result');   
+
+const playerResult = document.createElement('h4');
+const computerResult = document.createElement('h4');
+
+const playerMove = document.createElement('span');
+const computerMove = document.createElement('span');
+
+
+let playerScore = 0;
+let computerScore = 0;
+
+// we use the .forEach method to iterate through each button
+    buttons.forEach((button) => {
+
+  // and for each one we add a 'click' listener
+    button.addEventListener('click', () => {
+        let computerChoice = getComputerChoice();
+
+        playerMove.textContent = button.textContent;
+        computerMove.textContent = computerChoice;
+
+        playerChoiceContainer.appendChild(playerMove);
+        computerChoiceContainer.appendChild(computerMove);
+
+        let result = playRound(button.textContent, computerChoice);
+
+        if (result == 0) {
+            playerScore += 0.5;
+            computerScore += 0.5;
+
+        } else if (result == 1) {
+         playerScore++;
+         
+        } else {
+        computerScore++;
+        }
+
+        playerResult.textContent = playerScore;
+        computerResult.textContent = computerScore;
+
+        playerResultContainer.appendChild(playerResult);
+        computerResultContainer.appendChild(computerResult);
+
+    });
+    });
