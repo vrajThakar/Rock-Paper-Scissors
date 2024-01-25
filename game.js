@@ -1,14 +1,7 @@
-
-    
-    
-    function getComputerChoice() {
+ function getComputerChoice() {
     let computerChoice = ['Rock', 'Paper', 'Scissors'];
     let index = Math.floor(Math.random() * 3);
     return computerChoice[index];
-}
-
-function playerSelection() {
-    
 }
 
 function getWinner(p1, p2) {
@@ -19,15 +12,6 @@ function getWinner(p1, p2) {
 }
 
 function playRound(playerChoice, computerChoice) {
-
-    
-    
-    const playerMove = document.createElement('span');
-    playerMove.classList.toggle('move');    
-    
-    const computerMove = document.createElement('span');
-
-
     if (playerChoice == computerChoice) {
         console.log("It's a tie! Re-play Round!")
         return 0;
@@ -44,25 +28,6 @@ function displayChoice(player, computer) {
 
 
 }
-
-function game() {
-
-
-
-    let playerMove = playerSelection();
-    let computerMove = getComputerChoice();
-    displayChoice("Rock", "Rock")
-    let result = playRound(playerMove, computerMove);
-    if (result == 0) {
-
-   } else if (result == 1) {
-    playerScore++;
-    
-   } else {
-   computerScore++;
-   }
-}  
-
 const buttons = document.querySelectorAll('button');
 
 const playerChoiceContainer = document.querySelector('.container .choices .playerMove');
